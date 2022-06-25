@@ -72,6 +72,7 @@ func (s *stepMountImage) Run(ctx context.Context, state multistep.StateBag) mult
 
 		run(ctx, state, fmt.Sprintf("fdisk -l"))
 		run(ctx, state, fmt.Sprintf("df -h"))
+		run(ctx, state, fmt.Sprintf("lsblk"))
 
 		err := run(ctx, state, fmt.Sprintf(
 			"mount %s %s",
