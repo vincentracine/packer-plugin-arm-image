@@ -14,9 +14,8 @@ func main() {
 	pps.RegisterBuilder(plugin.DEFAULT_NAME, builder.NewBuilder())
 	pps.RegisterPostProcessor(plugin.DEFAULT_NAME, postprocessor.NewFlasher())
 	pps.SetVersion(version.PluginVersion)
-	fmt.Println(os.Args[1:])
 	err := pps.Run()
 	if err != nil {
-		panic(err)
+		panic(fmt.Errorf("failed to start packer-plugin-arm-image: %s [%v]", err, os.Args[:]))
 	}
 }
