@@ -23,15 +23,19 @@ func run(ctx context.Context, state multistep.StateBag, cmds string) error {
 	}
 
 	stderr := new(bytes.Buffer)
+	stdout := new(bytes.Buffer)
 
 	cmd := packer_common_common.ShellCommand(shellcmd)
 	cmd.Stderr = stderr
+	cmd.Stdout = stdout
 	if err := cmd.Run(); err != nil {
 		err := fmt.Errorf(
 			"Error executing command '%s': %s\nStderr: %s", cmds, err, stderr.String())
 		state.Put("error", err)
 		ui.Error(err.Error())
 		return err
+	} else {
+		ui.Message(fmt.Sprintf("Command output: %s", stdout.String()))
 	}
 	return nil
 }
