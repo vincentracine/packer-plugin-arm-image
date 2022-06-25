@@ -69,9 +69,6 @@ func (s *stepMountImage) Run(ctx context.Context, state multistep.StateBag) mult
 		mntpnt := filepath.Join(s.MountPath, mntAndPart.mnt)
 
 		ui.Message(fmt.Sprintf("Mounting: %s", mntAndPart.part))
-		ui.Message(fmt.Sprintf("Mounting: %s", mntAndPart.part))
-
-		run(ctx, state, fmt.Sprintf("fdisk -l"))
 
 		err := run(ctx, state, fmt.Sprintf(
 			"mount %s %s",
