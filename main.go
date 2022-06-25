@@ -18,6 +18,4 @@ func main() {
 	if err != nil {
 		panic(fmt.Errorf("failed to start packer-plugin-arm-image: %s [%v]", err, os.Args[:]))
 	}
-	var c = make(chan bool)
-	<-c
 }
